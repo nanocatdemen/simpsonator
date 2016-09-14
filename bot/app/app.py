@@ -1,6 +1,6 @@
 from flask import Flask, request, Response
 import requests
-from config import bot_token
+from config import bot_token, ip
 
 app = Flask(__name__)
 
@@ -12,7 +12,7 @@ methods = { k: telegram_url + method for k, method in method_names.items() }
 # remove webhook if exists
 r = requests.post(methods['set_webhook'])
 # set webhook
-r = requests.post(methods['set_webhook'], data = {'url':'172.30.65.194:8443'})
+r = requests.post(methods['set_webhook'], data = {'url': ip})
 
 @app.route('/home', methods=['POST'])
 def home():
